@@ -1,7 +1,7 @@
 services:
   ratings:
     build: .
-    image: ghcr.io/jeongchedah/bookinfo-ratings:dev
+    image: ghcr.io/jeongchedah/bookinfo-ratings:prd
     ports:
       - "8080:8080"
     environment:
