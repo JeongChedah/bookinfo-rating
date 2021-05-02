@@ -1,12 +1,12 @@
 ratings:
-  namespace: student26-bookinfo-prd
+  namespace: student26-bookinfo-${{ env.ENV_NAME }}
   image: ghcr.io/jeongchedah/bookinfo-ratings
-  tag: prd
+  tag: ${{ env.ENV_NAME }}
   replicas: 1
   imagePullSecrets: registry-bookinfo
   port: 8080
   healthCheckPath: "/health"
-  mongodbPasswordExistingSecret: bookinfo-prd-ratings-mongodb-secret
+  mongodbPasswordExistingSecret: bookinfo-${{ env.ENV_NAME }}-ratings-mongodb-secret
 ingress:
   host: bookinfo.opsta.net
   path: "/student26/ratings(/|$)(.*)"
@@ -16,5 +16,5 @@ ingress:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 extraEnv:
   SERVICE_VERSION: v2
-  MONGO_DB_URL: mongodb://bookinfo-prd-ratings-mongodb:27017/ratings
+  MONGO_DB_URL: mongodb://bookinfo-${{ env.ENV_NAME }}-ratings-mongodb:27017/ratings
   COMMIT_SHA: CHANGEME
